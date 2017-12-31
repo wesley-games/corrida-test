@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public float speed = 10;
+    public float speed = 10f;
+    public float rotationSpeed = 100f;
     public Camera cam;
 
     Rigidbody rb;
@@ -18,11 +19,14 @@ public class Car : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float translation = Input.GetAxis("Vertical") * speed;
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
-        Vector3 moviment = new Vector3(horizontal, 0f, vertical);
-        rb.AddForce(moviment * speed);
+        translation *= Time.deltaTime;
+        rotation *= Time.deltaTime;
+        transform.Translate(0, 0, translation);
+        transform.Rotate(0, rotation, 0);
+
     }
 
     void LateUpdate()
