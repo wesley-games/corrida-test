@@ -24,7 +24,7 @@ public class Car : MonoBehaviour
 
         translation *= Time.deltaTime;
         rotation *= Time.deltaTime;
-        transform.Translate(0, 0, translation);
+        transform.Translate(translation, 0, 0);
         transform.Rotate(0, rotation, 0);
 
     }
