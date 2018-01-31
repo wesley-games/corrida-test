@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class MovementTest : MonoBehaviour
 {
+    public float torque = 300f;
+    public float steer = 30f;
+    public float brake = 1000f;
+    public WheelCollider[] torqueWheels;
+    public WheelCollider[] steerWheels;
 
-    public float speed = 10f;
-    Rigidbody rb;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        float vertical = Input.GetAxis("Vertical") * speed;
-        float horizontal = Input.GetAxis("Horizontal") * speed;
-        rb.AddForce(new Vector3(horizontal, 0f, vertical));
+        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+
+        foreach (WheelCollider wheel in torqueWheels)
+        {
+            wheel.motorTorque = vertical * torque;
+        }
+
+        foreach (WheelCollider wheel in steerWheels)
+        {
+            wheel.steerAngle = horizontal * steer;
+        }
     }
 }
