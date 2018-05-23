@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // public float speed = 10;
+    public float speed = 50;
+    public float rotation = 50;
 
-    // private Vector3 velocity;
-    // private Rigidbody body;
+    private Rigidbody body;
 
-    // void Start()
-    // {
-    //     body = GetComponent<Rigidbody>();
-    // }
+    void Start()
+    {
+        body = GetComponent<Rigidbody>();
+    }
 
-    // void Update()
-    // {
-    //     float horizontal = Input.GetAxis("Horizontal");
-    //     float vertical = Input.GetAxis("Vertical");
-    //     velocity = new Vector3(horizontal, 0, vertical) * speed;
-    // }
+    void FixedUpdate()
+    {
+        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
 
-    // void FixedUpdate()
-    // {
-    //     body.velocity = velocity;
-    // }
+        // movement
+        Vector3 move = transform.forward * vertical * speed * Time.deltaTime;
+        body.MovePosition(body.position + move);
+
+        // rotation
+        float turn = rotation * horizontal * Time.deltaTime;
+        Quaternion eulerRotation = Quaternion.Euler(0, turn, 0);
+        body.MoveRotation(body.rotation * eulerRotation);
+    }
 }
