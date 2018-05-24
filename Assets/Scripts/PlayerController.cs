@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 50;
-    public float rotation = 50;
+    public float speed = 10;
+    public float rotation = 75;
 
     private Rigidbody body;
 
@@ -26,6 +26,6 @@ public class PlayerController : MonoBehaviour
         // rotation
         float turn = rotation * horizontal * Time.deltaTime;
         Quaternion eulerRotation = Quaternion.Euler(0, turn, 0);
-        body.MoveRotation(body.rotation * eulerRotation);
+        body.MoveRotation(body.rotation * eulerRotation); ;
     }
 }
