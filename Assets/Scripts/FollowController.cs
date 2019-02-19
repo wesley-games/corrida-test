@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class FollowController : MonoBehaviour
 {
-    public GameObject target;
-    private Vector3 offset;
+    public Transform target;
+    public Vector3 offset;
 
-    void Start()
+    void Start() 
     {
-        offset = transform.position - target.transform.position;
+        this.offset = transform.position - target.position;
     }
-
-    void LateUpdate()
+    
+    void Update()
     {
-        transform.position = target.transform.position + offset;
-
-        transform.LookAt(target.transform);
+        transform.position = target.position + offset;
     }
 }
