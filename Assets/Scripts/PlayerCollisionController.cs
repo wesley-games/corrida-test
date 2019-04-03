@@ -7,7 +7,8 @@ public class CollisionController : MonoBehaviour
     public Rigidbody rb;
     public MovementController controller;
 
-    void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.tag == "Obstacle")
         {
             controller.enabled = false;
